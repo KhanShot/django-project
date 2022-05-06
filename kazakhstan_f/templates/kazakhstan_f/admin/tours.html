@@ -1,0 +1,53 @@
+{% extends 'kazakhstan_f/admin/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'kazakhstan_f/includes/adheader.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'kazakhstan_f/includes/sidebar.html' %}
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Tours</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="/adm/tours/create" class="btn btn-sm btn-success ">
+                <span data-feather="calendar"></span>
+                Create Tour
+            </a>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">Description</th>
+                <th scope="col">price</th>
+                <th scope="col">Date</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for tour in tours %}
+
+              <tr>
+                <th scope="row">{{ tour.id }}</th>
+                <td>{{ tour.name }}</td>
+                <td>{{ tour.description }}</td>
+                <td>{{ tour.price }}</td>
+                <td>{{ tour.date }}</td>
+                <td><img src="{{ tour.image.url }}" class="img-responsive" width="150" /></td>
+                <td> <a href="/adm/tours/edit/{{tour.id}}" class="btn btn-warning">upd</a> <a href="/adm/tours/delete/{{tour.id}}" class="btn btn-danger">del</a> </td>
+              </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+        </main>
+    </div>
+</div>
+{% endblock content %}

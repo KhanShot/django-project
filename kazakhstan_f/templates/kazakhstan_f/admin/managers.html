@@ -1,0 +1,58 @@
+{% extends 'kazakhstan_f/admin/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'kazakhstan_f/includes/adheader.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'kazakhstan_f/includes/sidebar.html' %}
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Managers</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              {% if user.user_type == "admin" %}
+            <a href="/adm/managers/create" class="btn btn-sm btn-outline-success">
+                <span data-feather="calendar"></span>
+                Create manager 
+            </a>
+             {% endif %}
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created at</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for manager in users %}
+
+              <tr>
+                <th scope="row">{{ manager.id }}</th>
+                <td>{{ manager.username }}</td>
+                <td>{{ manager.email }}</td>
+                <td>{{ manager.date_joined }}</td>
+                <td> 
+                  {% if user.user_type == "admin" %}
+                    <a href="/adm/managers/edit/{{manager.id}}" class="btn btn-warning">upd</a> 
+                    <a href="/adm/managers/delete/{{manager.id}}" class="btn btn-danger">del</a> 
+                  {% else %}
+                    - - -
+                  {% endif %}
+                  
+                </td>
+              </tr>
+            {% endfor %}
+
+            </tbody>
+          </table>
+        
+        </main>
+    </div>
+</div>
+{% endblock content %}

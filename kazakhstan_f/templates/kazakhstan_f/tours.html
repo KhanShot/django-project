@@ -1,0 +1,53 @@
+{% extends 'kazakhstan_f/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="page">
+      <!-- Page Header-->
+      {% include 'kazakhstan_f/includes/header.html' %}
+      <!-- Breadcrumbs -->
+      <section class="breadcrumbs-custom-inset">
+        <div class="breadcrumbs-custom context-dark bg-overlay-60">
+          <div class="container">
+            <h2 class="breadcrumbs-custom-title">Tours</h2>
+            <ul class="breadcrumbs-custom-path">
+              <li><a href="index.html">Home</a></li>
+              <li class="active">Tours</li>
+            </ul>
+          </div>
+          <div class="box-position" style="background-image: url(images/breadcrumbs-bg.jpg);"></div>
+        </div>
+      </section>
+
+      <!-- Hot tours-->
+    <section class="section section-sm bg-default">
+      <div class="container">
+
+        <div class="row row-sm row-40 row-md-50">
+        {% for tour in tours %}
+          <div class="col-sm-6 col-md-12 wow fadeInRight">
+            <!-- Product Big-->
+            <article class="product-big">
+              <div class="unit flex-column flex-md-row align-items-md-stretch">
+                <div class="unit-left"><a class="product-big-figure" href="#"><img src="{{ tour.image.url }}" alt="" width="600" height="366"/></a></div>
+                <div class="unit-body">
+                  <div class="product-big-body">
+                    <h5 class="product-big-title"><a href="#">{{ tour.name }}</a></h5>
+                    <br>
+                    <p class="product-big-text">{{ tour.description }}</p><a class="button button-black-outline button-ujarak" aria-disabled="true">Buy This Tour</a>
+                    <div class="product-big-price-wrap"><span class="product-big-price"> {{ tour.price }} T </span></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+
+      <!-- Page Footer-->
+      {% include 'kazakhstan_f/includes/footer.html' %}
+    </div>
+
+{% endblock %}
